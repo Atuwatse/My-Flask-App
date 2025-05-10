@@ -1,0 +1,38 @@
+{% extends 'admin.html' %}
+
+{% block title %} AM SA AUTO|USER MANAGEMENT {% endblock %}
+
+{% block content %}
+<h1>User Management Page</h1>
+<p>Number of users: {{ num_users }}</p>
+<table>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Number</th>
+    <th>Role</th>
+    <th>Profile Page<th>
+    <th>Delete User</th>
+    <th>Promotion Link</th>
+    <th>Downgrade admin</th>
+  </tr>
+  {% for user in users %}
+    <tr>
+      <td>{{ user.firstname }}</td>
+      <td>{{ user.lastname }}</td>
+      <td>{{ user.number }}</td>
+      <td>{{ user.role }}<td>
+      <td><a href="{{ url_for('user_profile', id=user.id) }}">view details</a></td>
+      <td><a href="{{ url_for('delete_user', id=user.id) }}">delete account</a></td>
+      {% if user.role == "user" %}
+        <td><a href="{{ url_for('promote_user_page', id=user.id) }}">Promote to admin</a></td>
+      {% endif %}
+      {% if user.role == "admin" or user.role == "moderator" %}
+        <td><a href="{{ url_for('downgrade_admin_page', id=user.id) }}">downgrade</a><td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+
+</table>
+
+{% endblock %}

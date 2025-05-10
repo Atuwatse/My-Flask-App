@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} AM SA AUTO|ADD ITEM {% endblock %}		
+
+{% block content %}
+<h1>Add item</h1>
+<form method="POST" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+
+  {{ form.brand.label() }}
+  {{ form.brand }}
+  <br>
+  {{ form.model.label() }}
+  {{ form.model }}
+  <br>
+  {{ form.type.label() }}
+  {{ form.type() }}
+  <br>
+  {{ form.price.label() }}
+  {{ form.price }}
+  <br>
+  {{ form.country.label() }}
+  {{ form.country() }}
+  <br>
+  {{ form.region.label() }}
+  {{ form.region() }}
+  <br>
+  {{ form.description.label() }}
+  {{ form.description }}
+  <br>
+  <input type="file" name="images" multiple="True" required>
+  <br>
+  {{ form.submit }}
+</form>
+{% endblock %}

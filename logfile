@@ -1,0 +1,29 @@
+2025-05-06 18:10:23.979 GMT [9325] LOG:  starting PostgreSQL 17.0 on arm-unknown-linux-androideabi, compiled by Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262), 32-bit
+2025-05-06 18:10:23.984 GMT [9325] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-05-06 18:10:23.988 GMT [9325] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2025-05-06 18:10:24.008 GMT [9330] LOG:  database system was shut down at 2025-05-06 18:08:57 GMT
+2025-05-06 18:10:24.035 GMT [9325] LOG:  database system is ready to accept connections
+2025-05-06 18:11:26.125 GMT [9422] FATAL:  role "postgres" does not exist
+2025-05-06 18:15:24.112 GMT [9328] LOG:  checkpoint starting: time
+2025-05-06 18:15:25.962 GMT [9328] LOG:  checkpoint complete: wrote 20 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.757 s, sync=0.044 s, total=1.864 s; sync files=10, longest=0.023 s, average=0.005 s; distance=49 kB, estimate=49 kB; lsn=0/14F9C38, redo lsn=0/14F9BE0
+2025-05-06 18:27:33.299 GMT [14534] LOG:  starting PostgreSQL 17.0 on arm-unknown-linux-androideabi, compiled by Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262), 32-bit
+2025-05-06 18:27:33.313 GMT [14534] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-05-06 18:27:33.335 GMT [14534] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2025-05-06 18:27:33.412 GMT [14541] LOG:  database system was interrupted; last known up at 2025-05-06 18:15:25 GMT
+2025-05-06 18:27:33.935 GMT [14541] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-05-06 18:27:33.954 GMT [14541] LOG:  redo starts at 0/14F9BE0
+2025-05-06 18:27:33.954 GMT [14541] LOG:  invalid record length at 0/14F9CE8: expected at least 24, got 0
+2025-05-06 18:27:33.954 GMT [14541] LOG:  redo done at 0/14F9CB0 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-05-06 18:27:33.981 GMT [14539] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-05-06 18:27:34.007 GMT [14539] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.003 s, total=0.028 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/14F9CE8, redo lsn=0/14F9CE8
+2025-05-06 18:27:34.021 GMT [14534] LOG:  database system is ready to accept connections
+2025-05-06 18:27:52.112 GMT [14590] FATAL:  role "postgres" does not exist
+2025-05-06 18:29:49.473 GMT [14730] FATAL:  lock file "postmaster.pid" already exists
+2025-05-06 18:29:49.473 GMT [14730] HINT:  Is another postmaster (PID 14534) running in data directory "/data/data/com.termux/files/usr/var/lib/postgresql"?
+2025-05-06 18:32:06.621 GMT [14534] LOG:  received fast shutdown request
+2025-05-06 18:32:06.652 GMT [14534] LOG:  aborting any active transactions
+2025-05-06 18:32:06.738 GMT [14534] LOG:  background worker "logical replication launcher" (PID 14544) exited with exit code 1
+2025-05-06 18:32:06.740 GMT [14539] LOG:  shutting down
+2025-05-06 18:32:06.743 GMT [14539] LOG:  checkpoint starting: shutdown immediate
+2025-05-06 18:32:06.827 GMT [14539] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.018 s, sync=0.001 s, total=0.088 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/14F9D98, redo lsn=0/14F9D98
+2025-05-06 18:32:06.883 GMT [14534] LOG:  database system is shut down

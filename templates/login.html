@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} AM SA AUTO|LOGIN {% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<form method="POST">
+  {{ form.hidden_tag() }}
+
+  {{ form.country.label() }}
+  {{ form.country() }}
+  <br>
+  {{ form.number.label() }}
+  {{ form.number() }}
+  <br>
+  {{ form.password.label() }}
+  {{ form.password() }}
+  <br>
+  {{ form.submit }}
+</form>
+<p> don't have an account yet? <a href="{{ url_for('register') }}">register</a></p>
+{% endblock %}

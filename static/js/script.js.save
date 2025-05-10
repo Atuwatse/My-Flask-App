@@ -1,0 +1,131 @@
+///filter feature
+function toggleFilter(){
+    var filterDiv = document.getElementById("filterDiv");
+    filterDiv.style.display = (filterDiv.style.display === "none") ? "block" : "none";}
+
+  var baseUrl = "/listings"
+
+  document.getElementById("locationFilterForm").addEventListener("submit", function(e) { e.preventDefault();
+  var params = new URLSearchParams(window.location.search);
+  var location = document.getElementById("locationInput").value;
+  params.set("location", location);
+  window.location.href = baseUrl + "?" + params.toString(); });
+
+  document.getElementById("priceFilterForm").addEventListener("submit", function(e) { e.preventDefault();
+  var params = new URLSearchParams(window.location.search);
+  var minPrice = document.getElementById("minPriceInput").value;
+  var maxPrice = document.getElementById("maxPriceInput").value;
+  if (minPrice){
+  params.set("minPrice", minPrice);
+  }
+  if (maxPrice){
+  params.set("maxPrice", maxPrice);
+  }
+  alert(minPrice)
+  window.location.href = baseUrl + "?" + params.toString(); });
+
+  document.getElementById("typeFilterForm").addEventListener("submit", function(e) { e.preventDefault();
+  var params = new URLSearchParams(window.location.search);
+  var type = document.getElementById("typeInput").value;
+  params.set("type", type);
+  window.location.href = baseUrl + "?" + params.toString(); });
+
+// Images slider
+let slideIndex = 1;
+let touchStartX = 0;
+const swipeThreshold = 50; // Minimum swipe distance in pixels
+
+// Initialize slider when DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+    showSlides(slideIndex);
+    setupEventListeners();
+});
+
+function setupEventListeners() {
+    // Touch events for mobile
+    const sliderContainer = document.querySelector('.card-slider');
+    if (sliderContainer) {
+        sliderContainer.addEventListener('touchstart', handleTouchStart);
+        sliderContainer.addEventListener('touchend', handleTouchEnd);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') plusSlides(-1);
+        if (e.key === 'ArrowRight') plusSlides(1);
+    });
+}
+
+function handleTouchStart(e) {
+    touchStartX = e.touches[0].clientX;
+}
+
+function handleTouchEnd(e) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchStartX - touchEndX;
+    
+    if (Math.abs(deltaX) > swipeThreshold) {
+        if (deltaX > 0) {
+            plusSlides(1); // Swipe left
+        } else {
+            plusSlides(-1); // Swipe right
+        }
+    }
+}
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    const slides = document.getElementsByClassName('slide');
+    const indicators = document.getElementsByClassName('indicator');
+    
+    if (n > slides.length) slideIndex = 1;
+    if (n < 1) slideIndex = slides.length;
+
+    // Hide all slides
+    Array.from(slides).forEach(slide => {
+        slide.style.opacity = '0';
+        slide.style.transform = 'translateX(100%)';
+    });
+
+    // Show current slide
+    const currentSlide = slides[slideIndex - 1];
+    if (currentSlide) {
+        currentSlide.style.opacity = '1';
+        currentSlide.style.transform = 'translateX(0)';
+    }
+
+    // Update indicators
+    Array.from(indicators).forEach(indicator => {
+        indicator.classList.remove('active-indicator');
+    });
+    
+    if (indicators[slideIndex - 1]) {
+        indicators[slideIndex - 1].classList.add('active-indicator');
+    }
+}
+
+// Fullscreen functionality
+function openFullscreen(img) {
+    const modal = document.getElementById('fullscreenModal');
+    const modalImg = document.getElementById('expandedImg');
+    if (modal && modalImg) {
+        modal.style.display = 'block';
+        modalImg.src = img.src;
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeFullscreen() {
+    const modal = document.getElementById('fullscreenModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}

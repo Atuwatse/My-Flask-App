@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}AM SA AUTO | {{ item.brand }} {{ item.model }}{% endblock %}
+
+{% block content %}
+<!-- Image Slider Section -->
+<div class="slider-container">
+  <div class="slider-content">
+    {% for image in item.images %}
+      <div class="mySlides">
+        <img src="{{ url_for('static', filename='itemImages/' + image.filename) }}" class="slider-image">
+      </div>
+    {% endfor %}
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<!-- Item Details Section -->
+<div class="item-details">
+  <h1>{{ item.brand }} {{ item.model }}</h1>
+  <h2 class="price">{{ item.price }}</h2>
+  <p class="update-info">Last updated: {{ item.last_updated_str }}</p>
+  
+  <div class="description-section">
+    <h3>Description</h3>
+    <p class="description">{{ item.description }}</p>
+  </div>
+
+  {% if item.publisher_id == current_user.id %}
+  <div class="owner-actions">
+    <a href="{{ url_for('edit_item', id=item.id) }}" class="action-btn">Edit Listing</a>
+    <a href="{{ url_for('delete_item', id=item.id) }}" class="action-btn">Delete Listing</a>
+  </div>
+  {% endif %}
+
+  <div class="seller-info">
+    <h3>Seller Information</h3>
+    <p class="seller-name">Contact: {{ publisher_name }}</p>
+    <div class="contact-buttons">
+      <button class="call-btn"><a href="tel:{{ publisher_number }}" >Call Seller</a></button>
+      {% if publisher_whatsapp %}
+      <button class="whatsapp-btn"><a href="https://wa.me/{{ publisher_whatsapp }}">WhatsApp</a></button>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

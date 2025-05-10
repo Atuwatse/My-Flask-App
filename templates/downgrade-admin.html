@@ -1,0 +1,21 @@
+{% extends 'admin.html' %}
+
+{% block title %} AM SA AUTO|DOWNGRADE ADMIN {% endblock %}
+
+{% block content %}
+<h1>Downgrade admin</h1>
+<h3>Do you want to downgrade admin?</h3>
+<h4><u>User Information</u></h4>
+<div>
+<p>Firstname: {{ user.firstname }}</p>
+<p>Lastname: {{ user.lastname }}</p>
+<p>Phone Number: {{ user.number }}</p>
+<p>Whatsapp Number: {{ user.whatsapp }}</p>
+<p>Current Role: {{ user.role }}</p>
+</div>
+<p><u>User won't anymore be able to:</u></p>
+<div>
+  <button><a href="{{ url_for('users') }}">Cancel</a></button>
+  <button><a href="{{ url_for('downgrade_admin', id=user.id) }}">Downgrade</a></button>
+</div>
+{% endblock %}

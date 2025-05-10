@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} AM SA AUTO|SEARCH RESULTS {% endblock %}
+
+{% block content %}
+<h1>Search results for: {{ search_query }}</h1>
+<button type="button" id="filterButton" onclick="toggleFilter()">Filter by location</button>
+<div id="filterDiv" style="display: none;">
+  <form method="POST" id="filterForm" action="{{ url_for('filtered_listings') }}">
+    {{ form.hidden_tag() }}
+
+    {{ form.text.label }}
+    <input type="text" name="location" id="locationInput" placeholder="Enter Location"/>
+    <button type="submit">Apply filter</button>
+  </form>
+
+</div>
+{% if listings %}
+  <ul>
+    {% for listing in listings %}
+      <li>
+        <div>
+          {% with images = listing.images %}
+            {% with image = images[0] %}
+              <div>
+                <a href="{{ url_for('item_details', id=listing.id) }}"><img src="{{ url_for('static', filename=('itemImages/' ~ image.filename)) }}">
+        <p>{{ listing.brand }} {{ listing.model }}</p>
+        <p>{{ listing.formated_price }}</p>
+        <p>Last updated: {{ listing.updated_at_str }}</p>
+      </div></a>
+    {% endwith %}
+  {% endwith %}
+
+        </div>
+      </li>
+
+    {% endfor %}
+
+  </ul>
+{% else %}
+  <p>No results found for "{{ search_query }}"</p>
+{% endif %}
+
+<script>
+  function toggleFilter(){
+    var filterDiv = document.getElementById("filterDiv");
+    filterDiv.style.display = (filterDiv.style.display === "none") ? "block" : "none";}
+
+  document.getElementById("filterForm").addEventListener("submit", function(e) { e.preventDefault();
+  var location = document.getElementById("locationInput").value;
+  window.location.href = "/listings?location=" + encodeURIComponent(location); })
+</script>
+<script src="static/js/script.js"></script>
+{% endblock %}

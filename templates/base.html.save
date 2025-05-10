@@ -1,0 +1,39 @@
+<html>
+<head>
+<title> {% block title %} {% endblock %} </title>
+<head>
+<body>
+<header>
+  <div class="logo">AM SA AUTO</div>
+  <form method="POST" action="{{ url_for('search') }}">
+
+  </form>
+  <nav>
+    <a href="{{ url_for('index') }}">HOME</a>
+    {% if not current_user.is_authenticated %}
+      <a href="{{ url_for('login') }}">LOGIN</a>
+      <a href="{{ url_for('register') }}">REGISTER</a>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+      <a href="{{ url_for('logout') }}">LOGOUT</a>
+      <a href="{{ url_for('user_profile', id=current_user.id) }}">PROFILE</a>
+      <a href="{{ url_for('edit_user', id=current_user.id) }}">Edit Info</a>
+      <a href="{{ url_for('add_item') }}">Add Item</a>
+    {% endif %}
+  </nav>
+<header>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p style="color: red">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>
+

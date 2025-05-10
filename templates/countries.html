@@ -1,0 +1,35 @@
+{% extends 'admin.html' %}
+
+{% block title %} AM SA AUTO|ADMIN COUNTRIES {% endblock %}
+
+{% block content %}
+<h1>Countries Management Page</h1>
+<form method="POST">
+  {{ form.hidden_tag() }}
+
+  {{ form.country.label() }}
+  {{ form.country() }}
+  <br>
+  {{ form.code.label() }}
+  <small><b>NB: Country code without the '+'</b></small>
+  {{ form.code() }}
+  <br>
+  {{ form.regions.label() }}
+  <small><b>NB: Words should be separated with just spaces</b></small>
+  {{ form.regions() }}
+  <br>
+  {{ form.submit() }}
+</form>
+<h3><u>Present countries</u></h3>
+{% for country in countries %}
+  <div>
+    <p>Country Name: {{ country.name }}</p>
+    <div>
+      {% for region in country.regions %}
+        <p>{{ region.name }}</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}

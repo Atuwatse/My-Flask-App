@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} AM SA AUTO|HOME {% endblock %}
+
+{% block content %}
+<button type="button" id="filterButton" onclick="toggleFilter()">Filter by location</button>
+<div id="filterDiv" style="display: none;">
+  <form method="POST" id="locationFilterForm" action="{{ url_for('filtered_listings') }}">
+    {{ form.hidden_tag() }}
+
+    <input type="text" name="location" id="locationInput" placeholder="Enter Location"/>
+    <button type="submit">Apply filter</button>
+  </form>
+
+  <form method="POST" id="priceFilterForm" action="{{ url_for('filtered_listings') }}">
+    {{ form.hidden_tag() }}
+
+    <input type="number" name="minPrice" id="minPriceInput" placeholder="Min Price"/>
+    <input type="number" name="maxPrice" id="maxPriceInput" placeholder="Max Price"/>    
+    <button type="submit">Apply filter</button>
+  </form>
+
+  <form method="GET" id="typeFilterForm" action="{{ url_for('filtered_listings') }}">
+    {{ form.hidden_tag() }}
+
+    {{ form.type.label() }}
+    {{ form.type(id="typeInput") }}
+    <button type="submit">Apply filter</button>
+  </form>
+
+</div>
+{% for item in items %}
+  {% with images = item.images %}
+    {% with image = images[0] %}
+      <div>
+        <a href="{{ url_for('item_details', id=item.id) }}"><img src="{{ url_for('static', filename=('itemImages/' ~ image.filename)) }}">
+        <p>{{ item.brand }} {{ item.model }}</p>
+        <p>{{ item.formated_price }}</p>
+        <p>Last updated: {{ item.updated_at_str }}</p>
+      </div></a>
+    {% endwith %}
+  {% endwith %}
+{% endfor %}
+{% endblock %}

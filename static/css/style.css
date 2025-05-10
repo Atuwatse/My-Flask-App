@@ -1,0 +1,41 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+.card-slider {
+  display: flex;
+  overflow: hidden;
+}
+
+.mySlides {
+  display: none;
+  width: 100%;
+}
+
+.slider-image {
+  width: 100%;
+  height: auto;
+}
+
+/* Navigation Arrows */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  color: white;
+  font-size: 24px;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}

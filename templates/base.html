@@ -1,0 +1,44 @@
+<html>
+<head>
+<title> {% block title %} {% endblock %} </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<body>
+<header>
+  <div class="logo">AM SA AUTO</div>
+  <form method="GET" action="{{ url_for('search') }}">
+    <input type="text" name="search_query" placeholder="Search listings..."/>
+    <button type="submit">Search</button>
+  </form>
+  <nav>
+    <a href="{{ url_for('index') }}">HOME</a>
+    {% if not current_user.is_authenticated %}
+      <a href="{{ url_for('login') }}">LOGIN</a>
+      <a href="{{ url_for('register') }}">REGISTER</a>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+      <a href="{{ url_for('logout') }}">LOGOUT</a>
+      <a href="{{ url_for('user_profile', id=current_user.id) }}">PROFILE</a>
+      <a href="{{ url_for('edit_user', id=current_user.id) }}">Edit Info</a>
+      <a href="{{ url_for('add_item') }}">Add Item</a>
+    {% endif %}
+  </nav>
+<header>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p style="color: red">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block content %}
+
+{% endblock %}
+
+<script src="../static/js/script.js"></script>
+
+</body>
+</html>
+

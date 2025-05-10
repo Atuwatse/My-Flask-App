@@ -1,0 +1,24 @@
+{% extends 'admin.html' %}
+
+{% block title %} AM SA AUTO|PROMOTE USER {% endblock %}
+
+{% block content %}
+<h1>PROMOTE USER TO ADMIN</h1>
+<h3>Do you want to promote user to admin?</h3>
+<h4><u>User information</u></h4>
+<div>
+  <p>Firstname: {{ user.firstname }}</p>
+  <p>Lastname: {{ user.lastname }}</p>
+  <p>Number: {{ user.number }}</p>
+  <p>Whatsapp Number: {{ user.whatsapp }}</a>
+  <p>Current role: {{ user.role }}</p>
+</div>
+<div>
+  <h4><u>What user will be able to do</u></h4>
+
+</div>
+<div>
+  <button><a href="{{ url_for('promote_user', id=user.id) }}">Promote user</a><button>
+  <button><a href="{{ url_for('users') }}">Cancel</a></button>
+</div>
+{% endblock %}

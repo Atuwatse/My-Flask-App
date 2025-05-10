@@ -1,0 +1,26 @@
+{% extends 'admin.html' %}
+
+{% block title %} AM SA AUTO|LISTINGS MANAGEMENT {% endblock %}
+
+{% block content %}
+<h1>Listings Management</h1>
+<p>Total number of listings: {{ num_listings }}</p>
+<table>
+  <tr>
+    <th>Listing Id</th>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>Price</th>
+    <th>Publisher id</th>
+  </tr>
+  {% for listing in listings %}
+    <tr>
+      <td>{{ listing.id }}</td>
+      <td>{{ listing.brand }}</td>
+      <td>{{ listing.model }}</td>
+      <td>{{ listing.price }}</td>
+      <td><a href="{{ url_for('user_profile', id=listing.publisher_id) }}">{{ listing.publisher_id }}</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

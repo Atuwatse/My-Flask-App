@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} AM SA AUTO|EDIT ITEM {% endblock %}
+
+{% block content %}
+<h1>Edit Listing</h1>
+<form method="POST">
+  {{ form.hidden_tag() }}
+
+  {{ form.brand.label() }}
+  {{ form.brand() }}
+  <br>
+  {{ form.model.label() }}
+  {{ form.model() }}
+  <br>
+  {{ form.price.label() }}
+  {{ form.price() }}
+  <br>
+  {{ form.description.label() }}
+  {{ form.description() }}
+  <br>
+  {{ form.submit() }}
+
+</form>
+
+{% endblock %}

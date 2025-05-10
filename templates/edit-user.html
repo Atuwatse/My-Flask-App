@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} AM SA AUTO|EDIT USER {% endblock %}
+
+{% block content %}
+<h1>Edit user information</h1>
+<form method="POST">
+  {{ form.hidden_tag() }}
+
+  {{ form.firstname.label() }}
+  {{ form.firstname }}
+  <br>
+  {{ form.lastname.label() }}
+  {{ form.lastname }}
+  <br>
+  {{ form.number.label() }}
+  {{ form.number }}
+  <br>
+  {{ form.whatsapp.label() }}
+  {{ form.whatsapp }}
+  <br>
+  {{ form.submit }}
+</form>
+{% endblock %}
